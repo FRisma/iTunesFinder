@@ -8,6 +8,7 @@ target 'iTunesFinder' do
   # Pods for iTunesFinder
   pod 'Alamofire', '~> 4.7'
   pod 'SnapKit', '~> 4.0.0'
+  pod 'AlamofireNetworkActivityLogger'
 
   target 'iTunesFinderTests' do
     inherit! :search_paths

@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		1B5C6C44516CE170DB0E8E8D /* Pods_iTunesFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F10326D4CF8FF2FE074ABC59 /* Pods_iTunesFinder.framework */; };
 		CE56ED5920F660B2002685BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56ED5820F660B2002685BF /* AppDelegate.swift */; };
-		CE56ED5B20F660B2002685BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56ED5A20F660B2002685BF /* ViewController.swift */; };
 		CE56ED5E20F660B2002685BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE56ED5C20F660B2002685BF /* Main.storyboard */; };
 		CE56ED6020F660B5002685BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE56ED5F20F660B5002685BF /* Assets.xcassets */; };
 		CE56ED6320F660B5002685BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE56ED6120F660B5002685BF /* LaunchScreen.storyboard */; };
 		CE56ED6E20F660B6002685BF /* iTunesFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56ED6D20F660B6002685BF /* iTunesFinderTests.swift */; };
+		CE56ED7D20F66533002685BF /* IFLandingMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56ED7C20F66533002685BF /* IFLandingMainViewController.swift */; };
+		CE56ED7F20F67835002685BF /* IFLandingMainViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56ED7E20F67835002685BF /* IFLandingMainViewPresenter.swift */; };
+		CE56ED8120F67922002685BF /* IFSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56ED8020F67922002685BF /* IFSearchService.swift */; };
+		CE56ED8520F679EF002685BF /* IFSearchItunesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56ED8420F679EF002685BF /* IFSearchItunesProvider.swift */; };
 		EFE4DDC0BCB25D40D888EEF8 /* Pods_iTunesFinderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D2BEE73C439621A811F711 /* Pods_iTunesFinderTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,7 +38,6 @@
 		A9D2BEE73C439621A811F711 /* Pods_iTunesFinderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTunesFinderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE56ED5520F660B2002685BF /* iTunesFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE56ED5820F660B2002685BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE56ED5A20F660B2002685BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CE56ED5D20F660B2002685BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE56ED5F20F660B5002685BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE56ED6220F660B5002685BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -43,6 +45,10 @@
 		CE56ED6920F660B6002685BF /* iTunesFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTunesFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE56ED6D20F660B6002685BF /* iTunesFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesFinderTests.swift; sourceTree = "<group>"; };
 		CE56ED6F20F660B6002685BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE56ED7C20F66533002685BF /* IFLandingMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFLandingMainViewController.swift; sourceTree = "<group>"; };
+		CE56ED7E20F67835002685BF /* IFLandingMainViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFLandingMainViewPresenter.swift; sourceTree = "<group>"; };
+		CE56ED8020F67922002685BF /* IFSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFSearchService.swift; sourceTree = "<group>"; };
+		CE56ED8420F679EF002685BF /* IFSearchItunesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFSearchItunesProvider.swift; sourceTree = "<group>"; };
 		F10326D4CF8FF2FE074ABC59 /* Pods_iTunesFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTunesFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -109,12 +115,10 @@
 		CE56ED5720F660B2002685BF /* iTunesFinder */ = {
 			isa = PBXGroup;
 			children = (
-				CE56ED5820F660B2002685BF /* AppDelegate.swift */,
-				CE56ED5A20F660B2002685BF /* ViewController.swift */,
-				CE56ED5C20F660B2002685BF /* Main.storyboard */,
-				CE56ED5F20F660B5002685BF /* Assets.xcassets */,
-				CE56ED6120F660B5002685BF /* LaunchScreen.storyboard */,
-				CE56ED6420F660B5002685BF /* Info.plist */,
+				CE56ED7B20F664D2002685BF /* Presenter */,
+				CE56ED7A20F664CA002685BF /* View */,
+				CE56ED7920F664C1002685BF /* Model */,
+				CE56ED7820F66493002685BF /* Supporting Files */,
 			);
 			path = iTunesFinder;
 			sourceTree = "<group>";
@@ -126,6 +130,43 @@
 				CE56ED6F20F660B6002685BF /* Info.plist */,
 			);
 			path = iTunesFinderTests;
+			sourceTree = "<group>";
+		};
+		CE56ED7820F66493002685BF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CE56ED5820F660B2002685BF /* AppDelegate.swift */,
+				CE56ED5C20F660B2002685BF /* Main.storyboard */,
+				CE56ED5F20F660B5002685BF /* Assets.xcassets */,
+				CE56ED6120F660B5002685BF /* LaunchScreen.storyboard */,
+				CE56ED6420F660B5002685BF /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CE56ED7920F664C1002685BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE56ED8020F67922002685BF /* IFSearchService.swift */,
+				CE56ED8420F679EF002685BF /* IFSearchItunesProvider.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE56ED7A20F664CA002685BF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE56ED7C20F66533002685BF /* IFLandingMainViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE56ED7B20F664D2002685BF /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				CE56ED7E20F67835002685BF /* IFLandingMainViewPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,11 +295,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-iTunesFinder/Pods-iTunesFinder-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityLogger.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,7 +382,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE56ED5B20F660B2002685BF /* ViewController.swift in Sources */,
+				CE56ED8520F679EF002685BF /* IFSearchItunesProvider.swift in Sources */,
+				CE56ED7F20F67835002685BF /* IFLandingMainViewPresenter.swift in Sources */,
+				CE56ED7D20F66533002685BF /* IFLandingMainViewController.swift in Sources */,
+				CE56ED8120F67922002685BF /* IFSearchService.swift in Sources */,
 				CE56ED5920F660B2002685BF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,8 +548,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q727LVLNPN;
-				INFOPLIST_FILE = iTunesFinder/Info.plist;
+				DEVELOPMENT_TEAM = QY797FB22P;
+				INFOPLIST_FILE = "$(SRCROOT)/iTunesFinder/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -511,7 +557,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.frisma.iTunesFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -521,8 +567,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q727LVLNPN;
-				INFOPLIST_FILE = iTunesFinder/Info.plist;
+				DEVELOPMENT_TEAM = QY797FB22P;
+				INFOPLIST_FILE = "$(SRCROOT)/iTunesFinder/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -530,7 +576,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.frisma.iTunesFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
