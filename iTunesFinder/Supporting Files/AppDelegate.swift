@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NetworkActivityLogger.shared.startLogging()
         
         self.window = UIWindow()
-        let landing = IFLandingMainViewController()
-        self.window?.rootViewController = landing
+        let navController = UINavigationController(rootViewController:IFLandingMainViewController())
+        self.window?.rootViewController = navController
         self.window?.makeKeyAndVisible()
         
         return true
