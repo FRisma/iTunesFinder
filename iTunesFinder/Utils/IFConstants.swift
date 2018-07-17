@@ -9,4 +9,8 @@
 
 import Foundation
 
-let API_URL = "https://itunes.apple.com/search"
+let API_URL             = "https://itunes.apple.com/search"
+
+let kMoviesMenuFilter   = "Movies"
+let kMusicMenuFilter    = "Music"
+let kTvShowMenuFilter   = "Tv Shows"

@@ -63,7 +63,8 @@ class IFElementViewCell: UITableViewCell {
         thumbnail.snp.makeConstraints({ (make) in
             make.left.equalTo(self.snp.left).offset(3)
             make.top.equalTo(self.snp.top).offset(3)
-            make.top.equalTo(self.snp.bottom).offset(-3)
+            make.right.lessThanOrEqualTo(self.title.snp.left)
+            make.bottom.equalTo(self.snp.bottom).offset(-3)
             make.size.equalTo(60)
         })
         
@@ -71,17 +72,16 @@ class IFElementViewCell: UITableViewCell {
             make.left.equalTo(self.thumbnail.snp.right).offset(5)
             make.top.equalTo(self.snp.top).offset(5)
             make.right.equalTo(self.snp.right).offset(-5)
+            make.bottom.equalTo(self.subtitle.snp.top)
         })
         
         subtitle.snp.makeConstraints { (make) in
             make.top.equalTo(self.title.snp.bottom).offset(3)
-            make.centerX.equalTo(self.title)
+            make.left.equalTo(self.title.snp.left)
             make.right.equalTo(self.snp.right).offset(-5)
+            make.centerX.equalTo(self.title)
+            make.bottom.equalTo(self.thumbnail.snp.bottom)
         }
-        /*
-        self.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.thumbnail.snp.bottom).offset(5)
-        }*/
     }
     
     public func loadImage(fromURL url:String, placeholderImage :UIImage? = nil) {

@@ -11,6 +11,9 @@ import Foundation
 protocol IFLandingMainViewControllerProtocol {
     
     func setPresenter(presenter :IFLandingMainViewPresenterProtocol)
-    func updateView(withElements items: [Any])
+    func updateView(withElements items: [IFBaseModel])
+    func goToDetailsViewController(forItem item: IFBaseModel)
+    func showLoadingIndicator()
+    func hideLoadingIndicator()
     
 }

@@ -12,6 +12,7 @@ class IFLandingMainViewPresenter: IFLandingMainViewPresenterProtocol {
     var viewDelegate: IFLandingMainViewControllerProtocol?
     let service = IFSearchService()
     
+    //var isInTheMiddleOfSearch = false
     var resultsList = [Any]()
     
     init() {
@@ -19,33 +20,46 @@ class IFLandingMainViewPresenter: IFLandingMainViewPresenterProtocol {
     }
     
     public func retrieveData(forText term:String, andCategory category: Media) {
+        //isInTheMiddleOfSearch = true
+        self.showActivityIndicator()
         
         let request = IFSearchRequest(query: term, category: category)
         
         switch category {
         case .movie:
             self.service.getMovies(request, onSuccess: { (response) in
+                //self.isInTheMiddleOfSearch = false
+                self.hideActivityIndicator()
                 self.viewDelegate?.updateView(withElements: response)
             }) { (error) in
                 //Actualizar la UI, algo salio mal
                 print("Something went wrong")
+                //self.isInTheMiddleOfSearch = false
+                self.hideActivityIndicator()
             }
         case .music:
             self.service.getSongs(request, onSuccess: { (response) in
+                //self.isInTheMiddleOfSearch = false
+                self.hideActivityIndicator()
                 self.viewDelegate?.updateView(withElements: response)
             }) { (error) in
                 //Actualizar la UI, algo salio mal
+                //self.isInTheMiddleOfSearch = false
+                self.hideActivityIndicator()
                 print("Something went wrong")
             }
             
         case .tvShow:
             self.service.getTvShows(request, onSuccess: { (response) in
+                //self.isInTheMiddleOfSearch = false
+                self.hideActivityIndicator()
                 self.viewDelegate?.updateView(withElements: response)
             }) { (error) in
                 //Actualizar la UI, algo salio mal
+                //self.isInTheMiddleOfSearch = false
+                self.hideActivityIndicator()
                 print("Something went wrong")
             }
-            
         }
     }
     
@@ -55,12 +69,19 @@ class IFLandingMainViewPresenter: IFLandingMainViewPresenterProtocol {
         viewDelegate = view
     }
     
-    func searchButtonTapped() {
-        print("ButtonTapped")
+    func rowTapped(selectedElement element:IFBaseModel) {
+        self.viewDelegate?.goToDetailsViewController(forItem: element)
     }
     
-    func rowTapped() {
-        print("RowTapped")
+    // MARK: - Private Methods
+    func showActivityIndicator() {
+        self.viewDelegate?.showLoadingIndicator()
+    }
+    
+    func hideActivityIndicator() {
+        //if !isInTheMiddleOfSearch {
+            self.viewDelegate?.hideLoadingIndicator()
+        //}
     }
     
 }

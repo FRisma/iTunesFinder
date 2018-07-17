@@ -11,6 +11,5 @@ import Foundation
 protocol IFLandingMainViewPresenterProtocol {
     
     func setViewDelegate(view: IFLandingMainViewControllerProtocol)
-    func searchButtonTapped()
-    func rowTapped()
+    func rowTapped(selectedElement element:IFBaseModel)
 }

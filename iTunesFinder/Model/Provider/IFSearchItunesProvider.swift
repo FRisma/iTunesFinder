@@ -48,11 +48,12 @@ class IFSearchItunesProvider {
     }
     
     func fetchMusic(for artist: String, onSuccess:@escaping ([IFMusic]) -> Void, onFailure:@escaping (Error) -> Void ) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         Alamofire.request(API_URL,
                           method: .get,
                           parameters: ["term": artist, "media": Media.music.rawValue])
             .responseString() { response in
-                
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 switch(response.result) {
                 case .success (let responseString):
                     if let dataResponse = IFSearchResponse(JSONString: "\(responseString)") {
