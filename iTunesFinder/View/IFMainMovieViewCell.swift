@@ -1,28 +1,21 @@
 //
-//  IFElementViewCell.swift
+//  IFMainMovieViewCell.swift
 //  iTunesFinder
 //
-//  Created by Franco Risma on 12/07/2018.
+//  Created by Franco Risma on 17/07/2018.
 //  Copyright © 2018 FRisma. All rights reserved.
 //
 
+import Foundation
 import UIKit
-import SnapKit
-import AlamofireImage
 
-class IFElementViewCell: UITableViewCell {
-    
+class IFMainMovieViewCell: UITableViewCell {
     public var title = UILabel() {
         didSet {
             self.setNeedsLayout()
         }
     }
     public var subtitle = UILabel() {
-        didSet {
-            self.setNeedsLayout()
-        }
-    }
-    public var info = UILabel() {
         didSet {
             self.setNeedsLayout()
         }
@@ -43,16 +36,12 @@ class IFElementViewCell: UITableViewCell {
         subtitle = UILabel.init(frame: CGRect.zero)
         subtitle.font = UIFont.systemFont(ofSize: 14)
         
-        info = UILabel.init(frame: CGRect.zero)
-        info.font = UIFont.systemFont(ofSize: 9)
-        
         thumbnail.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         thumbnail.contentMode = .scaleToFill
         thumbnail.clipsToBounds = true
         
         self.addSubview(title)
         self.addSubview(subtitle)
-        self.addSubview(info)
         self.addSubview(thumbnail)
         
         self.applyConstraints()
@@ -100,5 +89,4 @@ class IFElementViewCell: UITableViewCell {
         thumbnail.layer.removeAllAnimations()
         thumbnail.image = nil
     }
-    
 }

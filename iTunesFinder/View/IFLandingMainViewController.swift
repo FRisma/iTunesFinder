@@ -14,12 +14,11 @@ import SnapKit
 
 class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate, IFLandingMainViewControllerProtocol {
     
-    var displayCategory: Media?
+    var displayCategory: Media!
     
     let tableView = UITableView()
     let searchController = UISearchController(searchResultsController: nil)
     let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray) //TODO add a view with blur
-    let actionSheetController: UIAlertController = UIAlertController(title: "Categories", message: "Option to select", preferredStyle: .actionSheet) //Consider replacing this with a segmented control
     
     let presenter: IFLandingMainViewPresenterProtocol!
     
@@ -68,7 +67,20 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! IFElementViewCell
+        
+        /*switch displayCategory {
+        case .music:
+            self.cellForMusicElement()
+            break
+        case .movie:
+            break
+        case .tvShow:
+            break
+        default:
+        
+        }*/
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! IFMainMusicViewCell
         
         let aSong = elements![indexPath.row] as! IFMusic
         cell.loadImage(fromURL: aSong.artWorkURL!)
@@ -93,11 +105,6 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
     func updateSearchResults(for searchController: UISearchController) {
         // TODO: This should be done in the presenter
         // Hide filter button while searching
-        if searchController.isActive {
-            searchController.searchBar.showsBookmarkButton = false
-        } else {
-            searchController.searchBar.showsBookmarkButton = true
-        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -106,16 +113,9 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        //TODO this should be done in the presenter
-        self.present(actionSheetController, animated: true, completion: nil)
-    }
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchText = searchBar.text {
-            if searchText.count > 2 {
-                presenter.retrieveData(forText: searchText)
-            }
+            presenter.retrieveData(forText: searchText)
         }
     }
     
@@ -167,7 +167,6 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
     func setupSearchController() {
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
-        searchController.searchBar.showsBookmarkButton = false
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.showsScopeBar = true
         searchController.searchBar.scopeButtonTitles = [kTvShowMenuFilter.capitalized,
@@ -179,7 +178,7 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableHeaderView = searchController.searchBar
-        tableView.register(IFElementViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(IFMainMusicViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.showsHorizontalScrollIndicator = false
         tableView.showsVerticalScrollIndicator = false
         tableView.tableHeaderView = self.searchController.searchBar
@@ -197,5 +196,21 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
         self.tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }
+    }
+    
+    func cellForMusicElement() {
+        
+    }
+    
+    func cellForMovieElement() {
+        
+    }
+    
+    func cellForTvShowElement() {
+        
+    }
+    
+    func cellForNoElement() {
+        
     }
 }
