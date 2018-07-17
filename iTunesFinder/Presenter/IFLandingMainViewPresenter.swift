@@ -12,23 +12,40 @@ class IFLandingMainViewPresenter: IFLandingMainViewPresenterProtocol {
     var viewDelegate: IFLandingMainViewControllerProtocol?
     let service = IFSearchService()
     
+    var resultsList = [Any]()
+    
     init() {
         // Overriding initializer
     }
     
-    public func retrieveData() {
+    public func retrieveData(forText term:String, andCategory category: Media) {
         
-        let request = IFSearchRequest(query: "Muse", category: .music)
-        self.service.getSongs(request, onSuccess: { (response) in
-            //Actualizar la UI, algo salio BIEN
-            print("Something went well")
+        let request = IFSearchRequest(query: term, category: category)
+        
+        switch category {
+        case .movie:
+            self.service.getMovies(request, onSuccess: { (response) in
+                self.viewDelegate?.updateView(withElements: response)
+            }) { (error) in
+                //Actualizar la UI, algo salio mal
+                print("Something went wrong")
+            }
+        case .music:
+            self.service.getSongs(request, onSuccess: { (response) in
+                self.viewDelegate?.updateView(withElements: response)
+            }) { (error) in
+                //Actualizar la UI, algo salio mal
+                print("Something went wrong")
+            }
             
-            self.viewDelegate?.updateView(withElements: response)
+        case .tvShow:
+            self.service.getTvShows(request, onSuccess: { (response) in
+                self.viewDelegate?.updateView(withElements: response)
+            }) { (error) in
+                //Actualizar la UI, algo salio mal
+                print("Something went wrong")
+            }
             
-            
-        }) { (error) in
-            //Actualizar la UI, algo salio mal
-            print("Something went wrong")
         }
     }
     

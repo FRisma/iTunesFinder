@@ -14,7 +14,7 @@ class IFSearchService: NSObject {
     
     public func getSongs (_ request: IFSearchRequest, onSuccess: @escaping ([IFMusic]) -> Void, onFailure: @escaping (Error) -> Void) {
         
-        self.provider.fetchMusic(for: "Muse", onSuccess:{ (response) in
+        self.provider.fetchMusic(for: request.query!, onSuccess:{ (response) in
             onSuccess(response)
         }) { (error) in
             print("Algo anduvo mal")
