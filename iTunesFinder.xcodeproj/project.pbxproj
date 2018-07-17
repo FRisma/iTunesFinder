@@ -114,6 +114,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CE0F06A020FE7DC600D0F88A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CE7E077020FD3ECD00D6CAF6 /* IFLandingMainViewPresenterProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		CE0F06A120FE7DCD00D0F88A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CE7E076E20FD3B5600D6CAF6 /* IFLandingMainViewControllerProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		CE133E1F20F8EC1F000B89D0 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,9 +217,9 @@
 		CE56ED7A20F664CA002685BF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CEFD0A0620F7915100CB4073 /* IFElementViewCell.swift */,
+				CE0F06A120FE7DCD00D0F88A /* Protocols */,
 				CE56ED7C20F66533002685BF /* IFLandingMainViewController.swift */,
-				CE7E076E20FD3B5600D6CAF6 /* IFLandingMainViewControllerProtocol.swift */,
+				CEFD0A0620F7915100CB4073 /* IFElementViewCell.swift */,
 				CE7E077220FD52EB00D6CAF6 /* IFDetailsViewController.swift */,
 			);
 			path = View;
@@ -212,8 +228,8 @@
 		CE56ED7B20F664D2002685BF /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				CE0F06A020FE7DC600D0F88A /* Protocols */,
 				CE56ED7E20F67835002685BF /* IFLandingMainViewPresenter.swift */,
-				CE7E077020FD3ECD00D6CAF6 /* IFLandingMainViewPresenterProtocol.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";

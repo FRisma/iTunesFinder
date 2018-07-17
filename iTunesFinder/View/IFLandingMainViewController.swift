@@ -14,19 +14,29 @@ import SnapKit
 
 class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate, IFLandingMainViewControllerProtocol {
     
-    var currentSelectedCategory: Media = .music
+    var displayCategory: Media?
     
     let tableView = UITableView()
     let searchController = UISearchController(searchResultsController: nil)
     let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray) //TODO add a view with blur
     let actionSheetController: UIAlertController = UIAlertController(title: "Categories", message: "Option to select", preferredStyle: .actionSheet) //Consider replacing this with a segmented control
     
-    let presenter = IFLandingMainViewPresenter()
+    let presenter: IFLandingMainViewPresenterProtocol!
     
     var elements: [IFBaseModel]? {
         didSet {
             tableView.reloadData()
         }
+    }
+    
+    // MARK: - Initializer
+    init(withPresenter presenter: IFLandingMainViewPresenterProtocol) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Not supported")
     }
     
     // MARK: - Lifecycle
@@ -37,10 +47,10 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
         self.setupNavBar()
         self.setupSearchController()
         self.setupTableView()
-        self.setupFiltersOptions()
+        //self.setupFiltersOptions()
         self.setupLoadingIndicator()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.setViewDelegate(view: self)
@@ -62,8 +72,8 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
         
         let aSong = elements![indexPath.row] as! IFMusic
         cell.loadImage(fromURL: aSong.artWorkURL!)
-        cell.title.text = aSong.song
-        cell.subtitle.text = aSong.artist
+        cell.title.text = aSong.getSong()
+        cell.subtitle.text = aSong.getArtist()
         cell.selectionStyle = .none
         
         return cell
@@ -91,8 +101,8 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if !searchText.isEmpty && searchText.count > 3 {
-            presenter.retrieveData(forText: searchText, andCategory: currentSelectedCategory)
+        if searchText.isEmpty {
+            //searchBar. disable search button if text is empty
         }
     }
     
@@ -101,13 +111,26 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
         self.present(actionSheetController, animated: true, completion: nil)
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let searchText = searchBar.text {
+            if searchText.count > 2 {
+                presenter.retrieveData(forText: searchText)
+            }
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        presenter.switchedCategory(Media(rawValue: selectedScope)!)
+    }
+    
     // MARK: - IFLandingMainViewControllerProtocol
     
     func setPresenter(presenter: IFLandingMainViewPresenterProtocol) {
         print("SetteandoPresenter")
     }
     
-    func updateView(withElements items: [IFBaseModel]) {
+    func updateView(withElements items: [IFBaseModel], forCategory category: Media) {
+        displayCategory = category
         elements = items
     }
     
@@ -144,9 +167,12 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
     func setupSearchController() {
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
-        searchController.searchBar.showsBookmarkButton = true
-        //searchController.searchBar.setImage(UIImage(named: "Sort"), for: .bookmark, state: .normal)
+        searchController.searchBar.showsBookmarkButton = false
         searchController.obscuresBackgroundDuringPresentation = true
+        searchController.searchBar.showsScopeBar = true
+        searchController.searchBar.scopeButtonTitles = [kTvShowMenuFilter.capitalized,
+                                                        kMusicMenuFilter.capitalized,
+                                                        kMoviesMenuFilter.capitalized]
     }
     
     func setupTableView() {
@@ -159,28 +185,6 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.tableHeaderView = self.searchController.searchBar
         
         view.addSubview(self.tableView)
-    }
-    
-    func setupFiltersOptions() {
-        let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            print("Cancel")
-        }
-        actionSheetController.addAction(cancelActionButton)
-        
-        let tvShowsActionButton = UIAlertAction(title: kTvShowMenuFilter, style: .default) { _ in
-            self.currentSelectedCategory = .tvShow
-        }
-        actionSheetController.addAction(tvShowsActionButton)
-        
-        let musicActionButton = UIAlertAction(title: kMusicMenuFilter, style: .default) { _ in
-            self.currentSelectedCategory = .music
-        }
-        actionSheetController.addAction(musicActionButton)
-        
-        let moviesActionButton = UIAlertAction(title: kMoviesMenuFilter, style: .default) { _ in
-            self.currentSelectedCategory = .movie
-        }
-        actionSheetController.addAction(moviesActionButton)
     }
     
     func setupLoadingIndicator() {

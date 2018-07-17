@@ -11,19 +11,17 @@ import ObjectMapper
 
 class IFTvShow: IFBaseModel {
     
-    let type: Media = .tvShow
-    var title :String?
-    var episode :String?
-    var longDesc : String?
+    override var type: Media? { get { return .tvShow } }
     
-    required init?(map: Map) {
-        super.init(map: map)
+    public func getTitle() -> String {
+        return self.artistName ?? ""
     }
     
-    override func mapping(map: Map) {
-        super.mapping(map: map)
-        title <- map["artistName"]
-        episode <- map["trackName"]
-        longDesc <- map["longDescription"]
+    public func getEpisode() -> String? {
+        return self.trackName ?? ""
+    }
+    
+    public func getBrief() -> String {
+        return self.longDesc ?? ""
     }
 }

@@ -12,4 +12,6 @@ protocol IFLandingMainViewPresenterProtocol {
     
     func setViewDelegate(view: IFLandingMainViewControllerProtocol)
     func rowTapped(selectedElement element:IFBaseModel)
+    func switchedCategory(_ category:Media)
+    func retrieveData(forText: String)
 }

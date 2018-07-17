@@ -10,18 +10,18 @@ import Foundation
 import ObjectMapper
 
 class IFMusic: IFBaseModel {
- 
-    let type: Media = .music
-    var song: String?
-    var artist: String?
+    
+    override var type: Media? { get { return .music } }
     
     required init?(map: Map) {
         super.init(map: map)
     }
     
-    override func mapping(map: Map) {
-        super.mapping(map: map)
-        song <- map["trackName"]
-        artist <- map["artistName"]
+    public func getArtist() -> String {
+        return self.artistName ?? ""
+    }
+    
+    public func getSong() -> String {
+        return self.trackName ?? ""
     }
 }

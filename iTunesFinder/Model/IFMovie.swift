@@ -11,17 +11,13 @@ import ObjectMapper
 
 class IFMovie: IFBaseModel {
  
-    let type: Media = .movie
-    var title: String?
-    var longDesc: String?
+    override var type: Media? { get { return .movie } }
     
-    required init?(map: Map) {
-        super.init(map: map)
+    public func getTitle() -> String {
+        return self.trackName ?? ""
     }
     
-    override func mapping(map: Map) {
-        super.mapping(map: map)
-        title <- map["trackName"]
-        longDesc <- map["longDescription"]
+    public func getBrief() -> String {
+        return self.longDesc ?? ""
     }
 }

@@ -9,58 +9,16 @@
 import Foundation
 
 class IFLandingMainViewPresenter: IFLandingMainViewPresenterProtocol {
+    
     var viewDelegate: IFLandingMainViewControllerProtocol?
     let service = IFSearchService()
     
-    //var isInTheMiddleOfSearch = false
+    var currentSelectedCategory: Media = .tvShow
     var resultsList = [Any]()
+    var lastQueryTerm: String?
     
     init() {
         // Overriding initializer
-    }
-    
-    public func retrieveData(forText term:String, andCategory category: Media) {
-        //isInTheMiddleOfSearch = true
-        self.showActivityIndicator()
-        
-        let request = IFSearchRequest(query: term, category: category)
-        
-        switch category {
-        case .movie:
-            self.service.getMovies(request, onSuccess: { (response) in
-                //self.isInTheMiddleOfSearch = false
-                self.hideActivityIndicator()
-                self.viewDelegate?.updateView(withElements: response)
-            }) { (error) in
-                //Actualizar la UI, algo salio mal
-                print("Something went wrong")
-                //self.isInTheMiddleOfSearch = false
-                self.hideActivityIndicator()
-            }
-        case .music:
-            self.service.getSongs(request, onSuccess: { (response) in
-                //self.isInTheMiddleOfSearch = false
-                self.hideActivityIndicator()
-                self.viewDelegate?.updateView(withElements: response)
-            }) { (error) in
-                //Actualizar la UI, algo salio mal
-                //self.isInTheMiddleOfSearch = false
-                self.hideActivityIndicator()
-                print("Something went wrong")
-            }
-            
-        case .tvShow:
-            self.service.getTvShows(request, onSuccess: { (response) in
-                //self.isInTheMiddleOfSearch = false
-                self.hideActivityIndicator()
-                self.viewDelegate?.updateView(withElements: response)
-            }) { (error) in
-                //Actualizar la UI, algo salio mal
-                //self.isInTheMiddleOfSearch = false
-                self.hideActivityIndicator()
-                print("Something went wrong")
-            }
-        }
     }
     
     // MARK: - IFLandingMainViewPresenterProtocol
@@ -73,15 +31,45 @@ class IFLandingMainViewPresenter: IFLandingMainViewPresenterProtocol {
         self.viewDelegate?.goToDetailsViewController(forItem: element)
     }
     
+    public func retrieveData(forText term:String) {
+        self.showActivityIndicator()
+        
+        let request = IFSearchRequest(query: term, category: currentSelectedCategory)
+        lastQueryTerm = term;
+        self.service.getData(request, onSuccess: { (response) in
+            self.hideActivityIndicator()
+            self.viewDelegate?.updateView(withElements: response, forCategory: request.category)
+        }) { (error) in
+            self.hideActivityIndicator()
+            //Show error message 
+            print("Something went wrong")
+        }
+    }
+    
+    func switchedCategory(_ category: Media) {
+        switch category {
+        case .tvShow:
+            currentSelectedCategory = .tvShow
+            break
+        case .music:
+            currentSelectedCategory = .music
+            break
+        case .movie:
+            currentSelectedCategory = .movie
+        }
+        
+        if let term = lastQueryTerm {
+            self.retrieveData(forText: term)
+        }
+    }
+    
     // MARK: - Private Methods
     func showActivityIndicator() {
         self.viewDelegate?.showLoadingIndicator()
     }
     
     func hideActivityIndicator() {
-        //if !isInTheMiddleOfSearch {
-            self.viewDelegate?.hideLoadingIndicator()
-        //}
+        self.viewDelegate?.hideLoadingIndicator()
     }
     
 }
