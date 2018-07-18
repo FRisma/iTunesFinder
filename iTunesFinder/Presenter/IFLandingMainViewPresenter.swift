@@ -13,16 +13,15 @@ class IFLandingMainViewPresenter: IFLandingMainViewPresenterProtocol {
     var viewDelegate: IFLandingMainViewControllerProtocol?
     let service = IFSearchService()
     
-    var currentSelectedCategory: Media = .tvShow
+    var currentSelectedCategory: Media! {
+        didSet {
+            self.viewDelegate?.updateView(forCategory: currentSelectedCategory)
+        }
+    }
     var resultsList = [Any]()
     var lastQueryTerm: String?
-    
-    init() {
-        // Overriding initializer
-    }
-    
+
     // MARK: - IFLandingMainViewPresenterProtocol
-    
     func setViewDelegate(view: IFLandingMainViewControllerProtocol) {
         viewDelegate = view
     }

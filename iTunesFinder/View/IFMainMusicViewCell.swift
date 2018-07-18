@@ -34,11 +34,13 @@ class IFMainMusicViewCell: UITableViewCell {
         
         trackName = UILabel.init(frame: CGRect.zero)
         trackName.numberOfLines = 1
-        trackName.font = UIFont.systemFont(ofSize: 16)
+        trackName.font = UIFont.systemFont(ofSize: 17)
+        trackName.textColor = .white
         
         artist = UILabel.init(frame: CGRect.zero)
         artist.numberOfLines = 1
         artist.font = UIFont.systemFont(ofSize: 14)
+        artist.textColor = Utils.UIColorFromRGB(rgbValue: 0xe0dee0)
         
         thumbnail.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         thumbnail.contentMode = .scaleToFill
@@ -58,18 +60,18 @@ class IFMainMusicViewCell: UITableViewCell {
             make.top.equalTo(self.snp.top).offset(3)
             make.right.lessThanOrEqualTo(self.trackName.snp.left)
             make.bottom.equalTo(self.snp.bottom).offset(-3)
-            make.size.equalTo(50)
+            make.size.equalTo(64)
         })
         
         trackName.snp.makeConstraints({ (make) in
             make.left.equalTo(self.thumbnail.snp.right).offset(5)
-            make.top.equalTo(self.snp.top).offset(5)
+            make.top.equalTo(self.thumbnail.snp.top)
             make.right.equalTo(self.snp.right).offset(-5)
             make.bottom.equalTo(self.artist.snp.top)
         })
         
         artist.snp.makeConstraints { (make) in
-            make.top.equalTo(self.trackName.snp.bottom).offset(3)
+            make.top.equalTo(self.trackName.snp.bottom).offset(2)
             make.left.equalTo(self.trackName.snp.left)
             make.right.equalTo(self.snp.right).offset(-5)
             make.centerX.equalTo(self.trackName)

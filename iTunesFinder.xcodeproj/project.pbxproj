@@ -10,7 +10,6 @@
 		1B5C6C44516CE170DB0E8E8D /* Pods_iTunesFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F10326D4CF8FF2FE074ABC59 /* Pods_iTunesFinder.framework */; };
 		CE0F06A320FE963D00D0F88A /* IFMainMovieViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F06A220FE963D00D0F88A /* IFMainMovieViewCell.swift */; };
 		CE0F06A520FE964F00D0F88A /* IFMainTvShowViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F06A420FE964F00D0F88A /* IFMainTvShowViewCell.swift */; };
-		CE0F06A720FE967000D0F88A /* IFMainNoContentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F06A620FE967000D0F88A /* IFMainNoContentViewCell.swift */; };
 		CE56ED5920F660B2002685BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56ED5820F660B2002685BF /* AppDelegate.swift */; };
 		CE56ED5E20F660B2002685BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE56ED5C20F660B2002685BF /* Main.storyboard */; };
 		CE56ED6020F660B5002685BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE56ED5F20F660B5002685BF /* Assets.xcassets */; };
@@ -24,7 +23,6 @@
 		CE7E076D20FCF65200D6CAF6 /* IFConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E076C20FCF65200D6CAF6 /* IFConstants.swift */; };
 		CE7E076F20FD3B5600D6CAF6 /* IFLandingMainViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E076E20FD3B5600D6CAF6 /* IFLandingMainViewControllerProtocol.swift */; };
 		CE7E077120FD3ECD00D6CAF6 /* IFLandingMainViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E077020FD3ECD00D6CAF6 /* IFLandingMainViewPresenterProtocol.swift */; };
-		CE7E077320FD52EB00D6CAF6 /* IFDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E077220FD52EB00D6CAF6 /* IFDetailsViewController.swift */; };
 		CE93D73020F6CDD500A22035 /* IFSearchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE93D72F20F6CDD500A22035 /* IFSearchRequest.swift */; };
 		CE93D73220F6CDEA00A22035 /* IFSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE93D73120F6CDEA00A22035 /* IFSearchResponse.swift */; };
 		CEFD0A0720F7915100CB4073 /* IFMainMusicViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFD0A0620F7915100CB4073 /* IFMainMusicViewCell.swift */; };
@@ -49,7 +47,6 @@
 		A9D2BEE73C439621A811F711 /* Pods_iTunesFinderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTunesFinderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0F06A220FE963D00D0F88A /* IFMainMovieViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFMainMovieViewCell.swift; sourceTree = "<group>"; };
 		CE0F06A420FE964F00D0F88A /* IFMainTvShowViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFMainTvShowViewCell.swift; sourceTree = "<group>"; };
-		CE0F06A620FE967000D0F88A /* IFMainNoContentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFMainNoContentViewCell.swift; sourceTree = "<group>"; };
 		CE56ED5520F660B2002685BF /* iTunesFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE56ED5820F660B2002685BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE56ED5D20F660B2002685BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,7 +64,6 @@
 		CE7E076C20FCF65200D6CAF6 /* IFConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFConstants.swift; sourceTree = "<group>"; };
 		CE7E076E20FD3B5600D6CAF6 /* IFLandingMainViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFLandingMainViewControllerProtocol.swift; sourceTree = "<group>"; };
 		CE7E077020FD3ECD00D6CAF6 /* IFLandingMainViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFLandingMainViewPresenterProtocol.swift; sourceTree = "<group>"; };
-		CE7E077220FD52EB00D6CAF6 /* IFDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFDetailsViewController.swift; sourceTree = "<group>"; };
 		CE93D72F20F6CDD500A22035 /* IFSearchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFSearchRequest.swift; sourceTree = "<group>"; };
 		CE93D73120F6CDEA00A22035 /* IFSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFSearchResponse.swift; sourceTree = "<group>"; };
 		CEFD0A0620F7915100CB4073 /* IFMainMusicViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFMainMusicViewCell.swift; sourceTree = "<group>"; };
@@ -219,8 +215,6 @@
 				CEFD0A0620F7915100CB4073 /* IFMainMusicViewCell.swift */,
 				CE0F06A220FE963D00D0F88A /* IFMainMovieViewCell.swift */,
 				CE0F06A420FE964F00D0F88A /* IFMainTvShowViewCell.swift */,
-				CE0F06A620FE967000D0F88A /* IFMainNoContentViewCell.swift */,
-				CE7E077220FD52EB00D6CAF6 /* IFDetailsViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -471,8 +465,6 @@
 				CE56ED8120F67922002685BF /* IFSearchService.swift in Sources */,
 				CEFD0A0720F7915100CB4073 /* IFMainMusicViewCell.swift in Sources */,
 				CE7E076D20FCF65200D6CAF6 /* IFConstants.swift in Sources */,
-				CE7E077320FD52EB00D6CAF6 /* IFDetailsViewController.swift in Sources */,
-				CE0F06A720FE967000D0F88A /* IFMainNoContentViewCell.swift in Sources */,
 				CE56ED5920F660B2002685BF /* AppDelegate.swift in Sources */,
 				CE7E077120FD3ECD00D6CAF6 /* IFLandingMainViewPresenterProtocol.swift in Sources */,
 				CE7E076A20FCDF7800D6CAF6 /* IFElementModel.swift in Sources */,

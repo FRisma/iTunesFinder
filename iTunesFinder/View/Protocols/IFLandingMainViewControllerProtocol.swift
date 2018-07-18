@@ -10,8 +10,8 @@ import Foundation
 
 protocol IFLandingMainViewControllerProtocol {
     
-    func setPresenter(presenter :IFLandingMainViewPresenterProtocol)
     func updateView(withElements items: [IFElementModel], forCategory category: Media)
+    func updateView(forCategory category: Media)
     func goToDetailsViewController(forItem item: IFElementModel)
     func showLoadingIndicator()
     func hideLoadingIndicator()
