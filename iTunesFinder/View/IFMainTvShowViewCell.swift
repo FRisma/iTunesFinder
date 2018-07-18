@@ -36,22 +36,28 @@ class IFMainTvShowViewCell: UITableViewCell {
         super.init(style: .default, reuseIdentifier: "SettingCell")
         
         title = UILabel.init(frame: CGRect.zero)
+        title.numberOfLines = 2
+        title.lineBreakMode = .byWordWrapping
         title.font = UIFont.systemFont(ofSize: 16)
         
         episode = UILabel.init(frame: CGRect.zero)
+        episode.numberOfLines = 3
+        episode.lineBreakMode = .byWordWrapping
         episode.font = UIFont.systemFont(ofSize: 14)
         
         brief = UILabel.init(frame: CGRect.zero)
+        brief.numberOfLines = 0
+        brief.lineBreakMode = .byWordWrapping
         brief.font = UIFont.systemFont(ofSize: 9)
         
         thumbnail.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         thumbnail.contentMode = .scaleToFill
         thumbnail.clipsToBounds = true
         
+        self.addSubview(thumbnail)
         self.addSubview(title)
         self.addSubview(episode)
         self.addSubview(brief)
-        self.addSubview(thumbnail)
         
         self.applyConstraints()
     }
@@ -59,29 +65,34 @@ class IFMainTvShowViewCell: UITableViewCell {
     func applyConstraints() {
         
         thumbnail.snp.makeConstraints({ (make) in
-            make.edges.equalTo(self)
+            make.left.equalTo(self.snp.left).offset(3)
+            make.top.equalTo(self.snp.top).offset(3)
+            make.right.lessThanOrEqualTo(self.title.snp.left)
+            make.bottom.equalTo(self.snp.bottom).offset(-3)
+            make.size.equalTo(120)
         })
         
         title.snp.makeConstraints({ (make) in
-            make.left.equalTo(self.snp.left).offset(5)
+            make.left.equalTo(self.thumbnail.snp.right).offset(5)
             make.top.equalTo(self.snp.top).offset(5)
             make.right.equalTo(self.snp.right).offset(-5)
-            make.centerX.equalTo(self.snp.centerX)
             make.bottom.equalTo(self.episode.snp.top)
         })
         
-        episode.snp.makeConstraints { (make) in
-            make.top.equalTo(self.title.snp.bottom).offset(3)
+        episode.snp.makeConstraints({ (make) in
+            make.left.equalTo(self.thumbnail.snp.right).offset(5)
+            make.top.equalTo(self.title.snp.bottom).offset(5)
+            make.right.equalTo(self.snp.right).offset(-5)
+            make.bottom.equalTo(self.brief.snp.top)
+        })
+        
+        brief.snp.makeConstraints { (make) in
+            make.top.equalTo(self.episode.snp.bottom).offset(3)
             make.left.equalTo(self.title.snp.left)
             make.right.equalTo(self.snp.right).offset(-5)
             make.bottom.equalTo(self.thumbnail.snp.bottom)
         }
-        
-        brief.snp.makeConstraints { (make) in
-            make.left.right.equalTo(self)
-            make.top.equalTo(self.episode).offset(10)
-            make.bottom.equalTo(self)
-        }
+
     }
     
     public func loadImage(fromURL url:String, placeholderImage :UIImage? = nil) {

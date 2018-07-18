@@ -11,7 +11,7 @@ import ObjectMapper
 
 class IFSearchResponse: Mappable {
 
-    var result : [IFMusic]?
+    var result : [IFElementModel]?
     
     required init?(map: Map) {
         

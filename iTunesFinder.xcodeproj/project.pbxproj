@@ -11,9 +11,6 @@
 		CE0F06A320FE963D00D0F88A /* IFMainMovieViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F06A220FE963D00D0F88A /* IFMainMovieViewCell.swift */; };
 		CE0F06A520FE964F00D0F88A /* IFMainTvShowViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F06A420FE964F00D0F88A /* IFMainTvShowViewCell.swift */; };
 		CE0F06A720FE967000D0F88A /* IFMainNoContentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F06A620FE967000D0F88A /* IFMainNoContentViewCell.swift */; };
-		CE133E1A20F8EA10000B89D0 /* IFMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE133E1920F8EA10000B89D0 /* IFMovie.swift */; };
-		CE133E1C20F8EA46000B89D0 /* IFTvShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE133E1B20F8EA46000B89D0 /* IFTvShow.swift */; };
-		CE133E1E20F8EA64000B89D0 /* IFMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE133E1D20F8EA64000B89D0 /* IFMusic.swift */; };
 		CE56ED5920F660B2002685BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56ED5820F660B2002685BF /* AppDelegate.swift */; };
 		CE56ED5E20F660B2002685BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE56ED5C20F660B2002685BF /* Main.storyboard */; };
 		CE56ED6020F660B5002685BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE56ED5F20F660B5002685BF /* Assets.xcassets */; };
@@ -23,7 +20,7 @@
 		CE56ED7F20F67835002685BF /* IFLandingMainViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56ED7E20F67835002685BF /* IFLandingMainViewPresenter.swift */; };
 		CE56ED8120F67922002685BF /* IFSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56ED8020F67922002685BF /* IFSearchService.swift */; };
 		CE56ED8520F679EF002685BF /* IFSearchItunesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE56ED8420F679EF002685BF /* IFSearchItunesProvider.swift */; };
-		CE7E076A20FCDF7800D6CAF6 /* IFBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E076920FCDF7800D6CAF6 /* IFBaseModel.swift */; };
+		CE7E076A20FCDF7800D6CAF6 /* IFElementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E076920FCDF7800D6CAF6 /* IFElementModel.swift */; };
 		CE7E076D20FCF65200D6CAF6 /* IFConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E076C20FCF65200D6CAF6 /* IFConstants.swift */; };
 		CE7E076F20FD3B5600D6CAF6 /* IFLandingMainViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E076E20FD3B5600D6CAF6 /* IFLandingMainViewControllerProtocol.swift */; };
 		CE7E077120FD3ECD00D6CAF6 /* IFLandingMainViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E077020FD3ECD00D6CAF6 /* IFLandingMainViewPresenterProtocol.swift */; };
@@ -53,9 +50,6 @@
 		CE0F06A220FE963D00D0F88A /* IFMainMovieViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFMainMovieViewCell.swift; sourceTree = "<group>"; };
 		CE0F06A420FE964F00D0F88A /* IFMainTvShowViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFMainTvShowViewCell.swift; sourceTree = "<group>"; };
 		CE0F06A620FE967000D0F88A /* IFMainNoContentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFMainNoContentViewCell.swift; sourceTree = "<group>"; };
-		CE133E1920F8EA10000B89D0 /* IFMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFMovie.swift; sourceTree = "<group>"; };
-		CE133E1B20F8EA46000B89D0 /* IFTvShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFTvShow.swift; sourceTree = "<group>"; };
-		CE133E1D20F8EA64000B89D0 /* IFMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFMusic.swift; sourceTree = "<group>"; };
 		CE56ED5520F660B2002685BF /* iTunesFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE56ED5820F660B2002685BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE56ED5D20F660B2002685BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -69,7 +63,7 @@
 		CE56ED7E20F67835002685BF /* IFLandingMainViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFLandingMainViewPresenter.swift; sourceTree = "<group>"; };
 		CE56ED8020F67922002685BF /* IFSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFSearchService.swift; sourceTree = "<group>"; };
 		CE56ED8420F679EF002685BF /* IFSearchItunesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFSearchItunesProvider.swift; sourceTree = "<group>"; };
-		CE7E076920FCDF7800D6CAF6 /* IFBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFBaseModel.swift; sourceTree = "<group>"; };
+		CE7E076920FCDF7800D6CAF6 /* IFElementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFElementModel.swift; sourceTree = "<group>"; };
 		CE7E076C20FCF65200D6CAF6 /* IFConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFConstants.swift; sourceTree = "<group>"; };
 		CE7E076E20FD3B5600D6CAF6 /* IFLandingMainViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFLandingMainViewControllerProtocol.swift; sourceTree = "<group>"; };
 		CE7E077020FD3ECD00D6CAF6 /* IFLandingMainViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFLandingMainViewPresenterProtocol.swift; sourceTree = "<group>"; };
@@ -212,10 +206,7 @@
 			children = (
 				CE133E2020F8EC2C000B89D0 /* Provider */,
 				CE133E1F20F8EC1F000B89D0 /* Service */,
-				CE133E1920F8EA10000B89D0 /* IFMovie.swift */,
-				CE133E1B20F8EA46000B89D0 /* IFTvShow.swift */,
-				CE133E1D20F8EA64000B89D0 /* IFMusic.swift */,
-				CE7E076920FCDF7800D6CAF6 /* IFBaseModel.swift */,
+				CE7E076920FCDF7800D6CAF6 /* IFElementModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -472,22 +463,19 @@
 				CE93D73220F6CDEA00A22035 /* IFSearchResponse.swift in Sources */,
 				CE0F06A520FE964F00D0F88A /* IFMainTvShowViewCell.swift in Sources */,
 				CE56ED8520F679EF002685BF /* IFSearchItunesProvider.swift in Sources */,
-				CE133E1A20F8EA10000B89D0 /* IFMovie.swift in Sources */,
 				CE56ED7F20F67835002685BF /* IFLandingMainViewPresenter.swift in Sources */,
 				CE93D73020F6CDD500A22035 /* IFSearchRequest.swift in Sources */,
 				CE56ED7D20F66533002685BF /* IFLandingMainViewController.swift in Sources */,
 				CE7E076F20FD3B5600D6CAF6 /* IFLandingMainViewControllerProtocol.swift in Sources */,
 				CE0F06A320FE963D00D0F88A /* IFMainMovieViewCell.swift in Sources */,
 				CE56ED8120F67922002685BF /* IFSearchService.swift in Sources */,
-				CE133E1C20F8EA46000B89D0 /* IFTvShow.swift in Sources */,
 				CEFD0A0720F7915100CB4073 /* IFMainMusicViewCell.swift in Sources */,
-				CE133E1E20F8EA64000B89D0 /* IFMusic.swift in Sources */,
 				CE7E076D20FCF65200D6CAF6 /* IFConstants.swift in Sources */,
 				CE7E077320FD52EB00D6CAF6 /* IFDetailsViewController.swift in Sources */,
 				CE0F06A720FE967000D0F88A /* IFMainNoContentViewCell.swift in Sources */,
 				CE56ED5920F660B2002685BF /* AppDelegate.swift in Sources */,
 				CE7E077120FD3ECD00D6CAF6 /* IFLandingMainViewPresenterProtocol.swift in Sources */,
-				CE7E076A20FCDF7800D6CAF6 /* IFBaseModel.swift in Sources */,
+				CE7E076A20FCDF7800D6CAF6 /* IFElementModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

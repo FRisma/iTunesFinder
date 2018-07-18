@@ -15,7 +15,7 @@ class IFMainMovieViewCell: UITableViewCell {
             self.setNeedsLayout()
         }
     }
-    public var subtitle = UILabel() {
+    public var brief = UILabel() {
         didSet {
             self.setNeedsLayout()
         }
@@ -31,18 +31,22 @@ class IFMainMovieViewCell: UITableViewCell {
         super.init(style: .default, reuseIdentifier: "SettingCell")
         
         title = UILabel.init(frame: CGRect.zero)
+        title.numberOfLines = 2
+        title.lineBreakMode = .byWordWrapping
         title.font = UIFont.systemFont(ofSize: 16)
         
-        subtitle = UILabel.init(frame: CGRect.zero)
-        subtitle.font = UIFont.systemFont(ofSize: 14)
+        brief = UILabel.init(frame: CGRect.zero)
+        brief.numberOfLines = 0
+        brief.lineBreakMode = .byWordWrapping
+        brief.font = UIFont.systemFont(ofSize: 14)
         
         thumbnail.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         thumbnail.contentMode = .scaleToFill
         thumbnail.clipsToBounds = true
         
-        self.addSubview(title)
-        self.addSubview(subtitle)
         self.addSubview(thumbnail)
+        self.addSubview(title)
+        self.addSubview(brief)
         
         self.applyConstraints()
     }
@@ -50,26 +54,22 @@ class IFMainMovieViewCell: UITableViewCell {
     func applyConstraints() {
         
         thumbnail.snp.makeConstraints({ (make) in
-            make.left.equalTo(self.snp.left).offset(3)
-            make.top.equalTo(self.snp.top).offset(3)
-            make.right.lessThanOrEqualTo(self.title.snp.left)
-            make.bottom.equalTo(self.snp.bottom).offset(-3)
-            make.size.equalTo(60)
+            make.edges.equalTo(self)
+            make.size.equalTo(300)
         })
         
         title.snp.makeConstraints({ (make) in
-            make.left.equalTo(self.thumbnail.snp.right).offset(5)
+            make.left.equalTo(self.snp.left).offset(5)
             make.top.equalTo(self.snp.top).offset(5)
             make.right.equalTo(self.snp.right).offset(-5)
-            make.bottom.equalTo(self.subtitle.snp.top)
+            make.centerX.equalTo(self.snp.centerX)
+            make.bottom.equalTo(self.brief.snp.top)
         })
         
-        subtitle.snp.makeConstraints { (make) in
-            make.top.equalTo(self.title.snp.bottom).offset(3)
-            make.left.equalTo(self.title.snp.left)
-            make.right.equalTo(self.snp.right).offset(-5)
-            make.centerX.equalTo(self.title)
-            make.bottom.equalTo(self.thumbnail.snp.bottom)
+        brief.snp.makeConstraints { (make) in
+            make.left.right.equalTo(self)
+            make.top.equalTo(self.title).offset(10)
+            make.bottom.equalTo(self)
         }
     }
     

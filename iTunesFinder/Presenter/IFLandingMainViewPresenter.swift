@@ -27,7 +27,7 @@ class IFLandingMainViewPresenter: IFLandingMainViewPresenterProtocol {
         viewDelegate = view
     }
     
-    func rowTapped(selectedElement element:IFBaseModel) {
+    func rowTapped(selectedElement element:IFElementModel) {
         self.viewDelegate?.goToDetailsViewController(forItem: element)
     }
     

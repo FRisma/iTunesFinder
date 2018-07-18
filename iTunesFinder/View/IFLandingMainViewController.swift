@@ -22,7 +22,7 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
     
     let presenter: IFLandingMainViewPresenterProtocol!
     
-    var elements: [IFBaseModel]? {
+    var elements: [IFElementModel]? {
         didSet {
             tableView.reloadData()
         }
@@ -39,14 +39,12 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     // MARK: - Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupNavBar()
         self.setupSearchController()
         self.setupTableView()
-        //self.setupFiltersOptions()
         self.setupLoadingIndicator()
     }
     
@@ -56,8 +54,7 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
         self.applyConstraints()
     }
     
-    // MARK: - UITableView
-    
+    // MARK: - UITableViewDelegate & UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let numberOfElements = elements?.count {
             return numberOfElements
@@ -68,32 +65,21 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        /*switch displayCategory {
+        switch displayCategory {
         case .music:
-            self.cellForMusicElement()
-            break
+            return self.cellForMusicElement(tableView: tableView, at: indexPath)
         case .movie:
-            break
+            return self.cellForMovieElement(tableView: tableView, at: indexPath)
         case .tvShow:
-            break
+            return self.cellForTvShowElement(tableView: tableView, at: indexPath)
         default:
-        
-        }*/
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! IFMainMusicViewCell
-        
-        let aSong = elements![indexPath.row] as! IFMusic
-        cell.loadImage(fromURL: aSong.artWorkURL!)
-        cell.title.text = aSong.getSong()
-        cell.subtitle.text = aSong.getArtist()
-        cell.selectionStyle = .none
-        
-        return cell
+            return self.cellForNoElement(tableView: tableView, at: indexPath)
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let aSong = elements![indexPath.row] as! IFMusic
-        self.presenter.rowTapped(selectedElement: aSong)
+        let element = elements![indexPath.row]
+        self.presenter.rowTapped(selectedElement: element)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -101,16 +87,9 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     // MARK: - UISearchResultsUpdating
-    
     func updateSearchResults(for searchController: UISearchController) {
         // TODO: This should be done in the presenter
         // Hide filter button while searching
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            //searchBar. disable search button if text is empty
-        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -124,12 +103,11 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     // MARK: - IFLandingMainViewControllerProtocol
-    
     func setPresenter(presenter: IFLandingMainViewPresenterProtocol) {
         print("SetteandoPresenter")
     }
     
-    func updateView(withElements items: [IFBaseModel], forCategory category: Media) {
+    func updateView(withElements items: [IFElementModel], forCategory category: Media) {
         displayCategory = category
         elements = items
     }
@@ -143,7 +121,7 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
         loadingIndicator.stopAnimating()
     }
     
-    func goToDetailsViewController(forItem item: IFBaseModel) {
+    func goToDetailsViewController(forItem item: IFElementModel) {
         if let playString = item.preview {
             let player = AVPlayer(url: URL(fileURLWithPath: playString))
             let vc = AVPlayerViewController()
@@ -158,7 +136,6 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     // MARK: - Iternal methods
-    
     func setupNavBar() {
         navigationItem.title = "Busqueda"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -178,7 +155,10 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableHeaderView = searchController.searchBar
-        tableView.register(IFMainMusicViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(IFMainMusicViewCell.self, forCellReuseIdentifier: "MusicCell")
+        tableView.register(IFMainMovieViewCell.self, forCellReuseIdentifier: "MovieCell")
+        tableView.register(IFMainTvShowViewCell.self, forCellReuseIdentifier: "TvShowCell")
+        tableView.register(IFMainNoContentViewCell.self, forCellReuseIdentifier: "Error")
         tableView.showsHorizontalScrollIndicator = false
         tableView.showsVerticalScrollIndicator = false
         tableView.tableHeaderView = self.searchController.searchBar
@@ -198,19 +178,49 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    func cellForMusicElement() {
+    func cellForMusicElement(tableView: UITableView,at indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MusicCell") as! IFMainMusicViewCell
         
+        let aSong = elements![indexPath.row]
+        cell.loadImage(fromURL: aSong.artWorkURL!)
+        cell.trackName.text     = aSong.trackName
+        cell.artist.text  = aSong.artistName
+        cell.selectionStyle = .none
+        
+        return cell
     }
     
-    func cellForMovieElement() {
+    func cellForMovieElement(tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell") as! IFMainMovieViewCell
         
+        let aMovie = elements![indexPath.row]
+        cell.loadImage(fromURL: aMovie.artWorkURL!)
+        cell.title.text     = aMovie.artistName
+        cell.brief.text  = aMovie.longDesc
+        cell.selectionStyle = .none
+        
+        return cell
     }
     
-    func cellForTvShowElement() {
+    func cellForTvShowElement(tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TvShowCell") as! IFMainTvShowViewCell
         
+        let aShow = elements![indexPath.row]
+        cell.loadImage(fromURL: aShow.artWorkURL!)
+        cell.title.text = aShow.artistName
+        cell.episode.text  = aShow.trackName
+        cell.brief.text  = aShow.longDesc
+        cell.selectionStyle = .none
+        
+        return cell
     }
     
-    func cellForNoElement() {
+    func cellForNoElement(tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Error")!
         
+        cell.textLabel?.text = "No content"
+        cell.selectionStyle = .none
+        
+        return cell
     }
 }

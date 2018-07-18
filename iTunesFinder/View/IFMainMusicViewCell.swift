@@ -12,17 +12,12 @@ import AlamofireImage
 
 class IFMainMusicViewCell: UITableViewCell {
     
-    public var title = UILabel() {
+    public var trackName = UILabel() {
         didSet {
             self.setNeedsLayout()
         }
     }
-    public var subtitle = UILabel() {
-        didSet {
-            self.setNeedsLayout()
-        }
-    }
-    public var info = UILabel() {
+    public var artist = UILabel() {
         didSet {
             self.setNeedsLayout()
         }
@@ -37,22 +32,20 @@ class IFMainMusicViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: "SettingCell")
         
-        title = UILabel.init(frame: CGRect.zero)
-        title.font = UIFont.systemFont(ofSize: 16)
+        trackName = UILabel.init(frame: CGRect.zero)
+        trackName.numberOfLines = 1
+        trackName.font = UIFont.systemFont(ofSize: 16)
         
-        subtitle = UILabel.init(frame: CGRect.zero)
-        subtitle.font = UIFont.systemFont(ofSize: 14)
-        
-        info = UILabel.init(frame: CGRect.zero)
-        info.font = UIFont.systemFont(ofSize: 9)
+        artist = UILabel.init(frame: CGRect.zero)
+        artist.numberOfLines = 1
+        artist.font = UIFont.systemFont(ofSize: 14)
         
         thumbnail.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         thumbnail.contentMode = .scaleToFill
         thumbnail.clipsToBounds = true
         
-        self.addSubview(title)
-        self.addSubview(subtitle)
-        self.addSubview(info)
+        self.addSubview(trackName)
+        self.addSubview(artist)
         self.addSubview(thumbnail)
         
         self.applyConstraints()
@@ -63,23 +56,23 @@ class IFMainMusicViewCell: UITableViewCell {
         thumbnail.snp.makeConstraints({ (make) in
             make.left.equalTo(self.snp.left).offset(3)
             make.top.equalTo(self.snp.top).offset(3)
-            make.right.lessThanOrEqualTo(self.title.snp.left)
+            make.right.lessThanOrEqualTo(self.trackName.snp.left)
             make.bottom.equalTo(self.snp.bottom).offset(-3)
-            make.size.equalTo(60)
+            make.size.equalTo(50)
         })
         
-        title.snp.makeConstraints({ (make) in
+        trackName.snp.makeConstraints({ (make) in
             make.left.equalTo(self.thumbnail.snp.right).offset(5)
             make.top.equalTo(self.snp.top).offset(5)
             make.right.equalTo(self.snp.right).offset(-5)
-            make.bottom.equalTo(self.subtitle.snp.top)
+            make.bottom.equalTo(self.artist.snp.top)
         })
         
-        subtitle.snp.makeConstraints { (make) in
-            make.top.equalTo(self.title.snp.bottom).offset(3)
-            make.left.equalTo(self.title.snp.left)
+        artist.snp.makeConstraints { (make) in
+            make.top.equalTo(self.trackName.snp.bottom).offset(3)
+            make.left.equalTo(self.trackName.snp.left)
             make.right.equalTo(self.snp.right).offset(-5)
-            make.centerX.equalTo(self.title)
+            make.centerX.equalTo(self.trackName)
             make.bottom.equalTo(self.thumbnail.snp.bottom)
         }
     }

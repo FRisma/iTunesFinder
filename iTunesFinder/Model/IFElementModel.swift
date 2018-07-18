@@ -27,7 +27,7 @@ public enum Media: Int {
     }
 }
 
-class IFBaseModel: Mappable {
+class IFElementModel: Mappable {
     var type: Media? { get { return nil } }
     var artWorkURL: String?
     var preview:    String?

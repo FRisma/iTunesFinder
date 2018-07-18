@@ -16,7 +16,7 @@ class IFSearchItunesProvider {
     private init() {
     }
     
-    func fetchInfo(_ request: IFSearchRequest, onSuccess:@escaping ([IFBaseModel]) -> Void, onFailure:@escaping (Error) -> Void ) {
+    func fetchInfo(_ request: IFSearchRequest, onSuccess:@escaping ([IFElementModel]) -> Void, onFailure:@escaping (Error) -> Void ) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         Alamofire.request(API_URL,
                           method: .get,
