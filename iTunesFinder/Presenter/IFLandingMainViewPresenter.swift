@@ -10,17 +10,22 @@ import Foundation
 
 class IFLandingMainViewPresenter: IFLandingMainViewPresenterProtocol {
     
-    var viewDelegate: IFLandingMainViewControllerProtocol?
-    let service = IFSearchService()
+    private var viewDelegate: IFLandingMainViewControllerProtocol?
+    private let service: IFSearchService!
     
     var currentSelectedCategory: Media! {
         didSet {
             self.viewDelegate?.updateView(withElements: [], forCategory: currentSelectedCategory)
         }
     }
-    var resultsList = [IFElementModel]()
-    var lastQueryTerm: String?
+    private var resultsList = [IFElementModel]()
+    private var lastQueryTerm: String?
 
+    // MARK: - Initializer
+    init(witService service: IFSearchService) {
+        self.service = service
+    }
+    
     // MARK: - IFLandingMainViewPresenterProtocol
     func setViewDelegate(view: IFLandingMainViewControllerProtocol) {
         viewDelegate = view
@@ -64,11 +69,11 @@ class IFLandingMainViewPresenter: IFLandingMainViewPresenterProtocol {
     }
     
     // MARK: - Private Methods
-    func showActivityIndicator() {
+    private func showActivityIndicator() {
         self.viewDelegate?.showLoadingIndicator()
     }
     
-    func hideActivityIndicator() {
+    private func hideActivityIndicator() {
         self.viewDelegate?.hideLoadingIndicator()
     }
     
