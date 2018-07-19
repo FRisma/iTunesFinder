@@ -30,7 +30,7 @@ class IFMainMusicViewCell: UITableViewCell {
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: "SettingCell")
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         trackName = UILabel.init(frame: CGRect.zero)
         trackName.numberOfLines = 1

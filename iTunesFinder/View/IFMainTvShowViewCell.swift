@@ -34,7 +34,7 @@ class IFMainTvShowViewCell: UITableViewCell {
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: "SettingCell")
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         title = UILabel.init(frame: CGRect.zero)
         title.numberOfLines = 2
