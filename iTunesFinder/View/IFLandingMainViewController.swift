@@ -35,7 +35,7 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
     let tableView = UITableView()
     let searchController = UISearchController(searchResultsController: nil)
     let sectionsControl = UISegmentedControl(items: [kTvShowMenuFilter,kMusicMenuFilter,kMoviesMenuFilter])
-    let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray) //TODO add a view with blur
+    let loadingIndicator = IFLoadingIndicatorView.singleton
     
     let presenter: IFLandingMainViewPresenterProtocol!
     
@@ -72,7 +72,6 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
         self.setupSearchController()
         self.setupTableView()
         self.setupSegmentedControl()
-        self.setupLoadingIndicator()
         
         presenter.setViewDelegate(view: self)
         // Set default to init to TvShow selected segment
@@ -91,6 +90,13 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
             return numberOfElements
         }
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.alpha = 0.0
+        UIView.animate(withDuration: 1) {
+            cell.alpha = 1.0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -145,12 +151,11 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func showLoadingIndicator() {
-        view.bringSubview(toFront: loadingIndicator)
-        loadingIndicator.startAnimating()
+        self.view.addSubview(loadingIndicator)
     }
     
     func hideLoadingIndicator() {
-        loadingIndicator.stopAnimating()
+        loadingIndicator.removeFromSuperview()
     }
     
     func goToDetailsViewController(forItem item: IFElementModel) {
@@ -203,12 +208,6 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
     
     @objc func changeSegment(_ sender: AnyObject) {
         presenter.switchedCategory(Media(rawValue: sectionsControl.selectedSegmentIndex)!)
-    }
-    
-    private func setupLoadingIndicator() {
-        loadingIndicator.center = view.center
-        loadingIndicator.hidesWhenStopped = true;
-        view.addSubview(loadingIndicator)
     }
     
     private func applyConstraints() {
@@ -266,7 +265,7 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Error") {
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.lineBreakMode = .byWordWrapping
-            cell.textLabel?.text = "No hay resultados para mostrar, por favor intente nuevamente.\n Swipe para cambiar de categoria"
+            cell.textLabel?.text = "No hay resultados para mostrar, por favor intente nuevamente."
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             cell.isUserInteractionEnabled = false

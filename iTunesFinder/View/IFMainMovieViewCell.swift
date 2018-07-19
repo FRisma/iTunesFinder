@@ -61,19 +61,19 @@ class IFMainMovieViewCell: UITableViewCell {
             make.left.equalTo(self).offset(10)
             make.top.equalTo(self).offset(20)
             make.right.lessThanOrEqualTo(self.title.snp.left)
-            make.bottom.equalTo(self).offset(-20)
+            make.bottom.equalTo(self).offset(-10)
             make.size.equalTo(90)
         })
         
         title.snp.makeConstraints({ (make) in
-            make.left.equalTo(self.thumbnail.snp.right).offset(7)
+            make.left.equalTo(self.thumbnail.snp.right).offset(5)
             make.top.equalTo(self.thumbnail.snp.top).offset(10)
             make.right.equalTo(self.snp.right).offset(-10)
         })
         
         brief.snp.makeConstraints { (make) in
             make.left.right.equalTo(self.title)
-            make.top.equalTo(self.title).offset(5)
+            make.top.equalTo(self.title.snp.bottom).offset(5)
             make.bottom.equalTo(self).offset(-10)
         }
     }

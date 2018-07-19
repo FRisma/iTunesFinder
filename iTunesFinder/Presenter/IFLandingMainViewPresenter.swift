@@ -15,7 +15,7 @@ class IFLandingMainViewPresenter: IFLandingMainViewPresenterProtocol {
     
     var currentSelectedCategory: Media! {
         didSet {
-            self.viewDelegate?.updateView(withElements: resultsList, forCategory: currentSelectedCategory)
+            self.viewDelegate?.updateView(withElements: [], forCategory: currentSelectedCategory)
         }
     }
     var resultsList = [IFElementModel]()
@@ -41,7 +41,7 @@ class IFLandingMainViewPresenter: IFLandingMainViewPresenterProtocol {
             self.viewDelegate?.updateView(withElements: response, forCategory: request.category)
         }) { (error) in
             self.hideActivityIndicator()
-            //Show error message 
+            //TODO: Show error message as an alert
             print("Something went wrong")
         }
     }

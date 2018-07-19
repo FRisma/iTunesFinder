@@ -23,6 +23,7 @@
 		CE7E076D20FCF65200D6CAF6 /* IFConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E076C20FCF65200D6CAF6 /* IFConstants.swift */; };
 		CE7E076F20FD3B5600D6CAF6 /* IFLandingMainViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E076E20FD3B5600D6CAF6 /* IFLandingMainViewControllerProtocol.swift */; };
 		CE7E077120FD3ECD00D6CAF6 /* IFLandingMainViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E077020FD3ECD00D6CAF6 /* IFLandingMainViewPresenterProtocol.swift */; };
+		CE7E07752100522000D6CAF6 /* IFLoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E07742100522000D6CAF6 /* IFLoadingIndicatorView.swift */; };
 		CE93D73020F6CDD500A22035 /* IFSearchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE93D72F20F6CDD500A22035 /* IFSearchRequest.swift */; };
 		CE93D73220F6CDEA00A22035 /* IFSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE93D73120F6CDEA00A22035 /* IFSearchResponse.swift */; };
 		CEFD0A0720F7915100CB4073 /* IFMainMusicViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFD0A0620F7915100CB4073 /* IFMainMusicViewCell.swift */; };
@@ -64,6 +65,7 @@
 		CE7E076C20FCF65200D6CAF6 /* IFConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFConstants.swift; sourceTree = "<group>"; };
 		CE7E076E20FD3B5600D6CAF6 /* IFLandingMainViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFLandingMainViewControllerProtocol.swift; sourceTree = "<group>"; };
 		CE7E077020FD3ECD00D6CAF6 /* IFLandingMainViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFLandingMainViewPresenterProtocol.swift; sourceTree = "<group>"; };
+		CE7E07742100522000D6CAF6 /* IFLoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFLoadingIndicatorView.swift; sourceTree = "<group>"; };
 		CE93D72F20F6CDD500A22035 /* IFSearchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFSearchRequest.swift; sourceTree = "<group>"; };
 		CE93D73120F6CDEA00A22035 /* IFSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFSearchResponse.swift; sourceTree = "<group>"; };
 		CEFD0A0620F7915100CB4073 /* IFMainMusicViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFMainMusicViewCell.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				CE7E076C20FCF65200D6CAF6 /* IFConstants.swift */,
+				CE7E07742100522000D6CAF6 /* IFLoadingIndicatorView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				CE56ED8120F67922002685BF /* IFSearchService.swift in Sources */,
 				CEFD0A0720F7915100CB4073 /* IFMainMusicViewCell.swift in Sources */,
 				CE7E076D20FCF65200D6CAF6 /* IFConstants.swift in Sources */,
+				CE7E07752100522000D6CAF6 /* IFLoadingIndicatorView.swift in Sources */,
 				CE56ED5920F660B2002685BF /* AppDelegate.swift in Sources */,
 				CE7E077120FD3ECD00D6CAF6 /* IFLandingMainViewPresenterProtocol.swift in Sources */,
 				CE7E076A20FCDF7800D6CAF6 /* IFElementModel.swift in Sources */,
