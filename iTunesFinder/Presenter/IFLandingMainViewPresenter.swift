@@ -15,10 +15,10 @@ class IFLandingMainViewPresenter: IFLandingMainViewPresenterProtocol {
     
     var currentSelectedCategory: Media! {
         didSet {
-            self.viewDelegate?.updateView(forCategory: currentSelectedCategory)
+            self.viewDelegate?.updateView(withElements: resultsList, forCategory: currentSelectedCategory)
         }
     }
-    var resultsList = [Any]()
+    var resultsList = [IFElementModel]()
     var lastQueryTerm: String?
 
     // MARK: - IFLandingMainViewPresenterProtocol
@@ -36,6 +36,7 @@ class IFLandingMainViewPresenter: IFLandingMainViewPresenterProtocol {
         let request = IFSearchRequest(query: term, category: currentSelectedCategory)
         lastQueryTerm = term;
         self.service.getData(request, onSuccess: { (response) in
+            self.resultsList = response
             self.hideActivityIndicator()
             self.viewDelegate?.updateView(withElements: response, forCategory: request.category)
         }) { (error) in

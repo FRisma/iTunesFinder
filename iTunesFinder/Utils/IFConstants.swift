@@ -19,12 +19,15 @@ let kMusicMenuFilter    = "Music"
 let kTvShowMenuFilter   = "Tv Shows"
 
 // Colors
-let kTvShowNavigationBarColor   : UInt  = 0xF1FAAC
-let kTvShowBackgroundColor      : UInt  = 0xC5D068
+let kTvShowNavigationBarColor   : UInt  = 0xf76f6f
+let kTvShowBackgroundColor      : UInt  = 0xf44242
+let kTvShowFontColor            : UInt  = 0xfff200
 let kMusicNavigationBarColor    : UInt  = 0x3E3C40
 let kMusicBackgroundColor       : UInt  = 0x434443
+let kMusicFontColor             : UInt  = 0xf97800
 let kMoviesNavigationBarColor   : UInt  = 0x477286
 let kMoviesBackgroundColor      : UInt  = 0x27556C
+let kMoviesFontColor            : UInt  = 0xffffff
 
 class Utils {
     public class func UIColorFromRGB(rgbValue: UInt) -> UIColor {

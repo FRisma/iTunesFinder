@@ -27,6 +27,7 @@ class IFMainTvShowViewCell: UITableViewCell {
     }
     
     private var thumbnail = UIImageView(frame: CGRect.zero)
+    let containerView = UIView()
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -39,60 +40,68 @@ class IFMainTvShowViewCell: UITableViewCell {
         title.numberOfLines = 2
         title.lineBreakMode = .byWordWrapping
         title.font = UIFont.systemFont(ofSize: 16)
+        title.textColor = Utils.UIColorFromRGB(rgbValue: kTvShowFontColor)
         
         episode = UILabel.init(frame: CGRect.zero)
         episode.numberOfLines = 3
         episode.lineBreakMode = .byWordWrapping
         episode.font = UIFont.systemFont(ofSize: 14)
+        episode.textColor = Utils.UIColorFromRGB(rgbValue: kTvShowFontColor)
         
         brief = UILabel.init(frame: CGRect.zero)
         brief.numberOfLines = 0
         brief.lineBreakMode = .byWordWrapping
         brief.font = UIFont.systemFont(ofSize: 9)
+        brief.textColor = Utils.UIColorFromRGB(rgbValue: kTvShowFontColor)
         
         thumbnail.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         thumbnail.contentMode = .scaleToFill
         thumbnail.clipsToBounds = true
         
-        self.addSubview(thumbnail)
-        self.addSubview(title)
-        self.addSubview(episode)
-        self.addSubview(brief)
+        containerView.addSubview(thumbnail)
+        containerView.addSubview(title)
+        containerView.addSubview(episode)
+        containerView.addSubview(brief)
+        self.addSubview(containerView)
         
         self.applyConstraints()
     }
     
     func applyConstraints() {
         
+        containerView.snp.makeConstraints { (make) in
+            make.left.equalTo(self)
+            make.top.equalTo(self)
+            make.right.equalTo(self)
+            make.bottom.equalTo(self).offset(-10)
+        }
+        
         thumbnail.snp.makeConstraints({ (make) in
-            make.left.equalTo(self.snp.left).offset(3)
-            make.top.equalTo(self.snp.top).offset(3)
+            make.left.equalTo(self.containerView.snp.left).offset(3)
+            make.top.equalTo(self.containerView.snp.top).offset(3)
             make.right.lessThanOrEqualTo(self.title.snp.left)
-            make.bottom.equalTo(self.snp.bottom).offset(-3)
+            make.bottom.equalTo(self.containerView.snp.bottom).offset(-3)
             make.size.equalTo(120)
         })
         
         title.snp.makeConstraints({ (make) in
             make.left.equalTo(self.thumbnail.snp.right).offset(5)
-            make.top.equalTo(self.snp.top).offset(5)
+            make.top.equalTo(self.containerView.snp.top).offset(5)
             make.right.equalTo(self.snp.right).offset(-5)
-            make.bottom.equalTo(self.episode.snp.top)
         })
         
         episode.snp.makeConstraints({ (make) in
             make.left.equalTo(self.thumbnail.snp.right).offset(5)
             make.top.equalTo(self.title.snp.bottom).offset(5)
-            make.right.equalTo(self.snp.right).offset(-5)
-            make.bottom.equalTo(self.brief.snp.top)
+            make.right.equalTo(self.containerView.snp.right).offset(-5)
         })
         
         brief.snp.makeConstraints { (make) in
             make.top.equalTo(self.episode.snp.bottom).offset(3)
             make.left.equalTo(self.title.snp.left)
-            make.right.equalTo(self.snp.right).offset(-5)
-            make.bottom.equalTo(self.thumbnail.snp.bottom)
+            make.right.equalTo(self.containerView.snp.right).offset(-5)
+            make.bottom.lessThanOrEqualTo(containerView)
         }
-
     }
     
     public func loadImage(fromURL url:String, placeholderImage :UIImage? = nil) {

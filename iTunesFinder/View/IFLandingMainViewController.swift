@@ -200,7 +200,7 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
         sectionsControl.addTarget(self, action: #selector(changeSegment), for: .valueChanged)
         self.navigationItem.titleView = sectionsControl
     }
-
+    
     @objc func changeSegment(_ sender: AnyObject) {
         presenter.switchedCategory(Media(rawValue: sectionsControl.selectedSegmentIndex)!)
     }
@@ -266,11 +266,23 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Error") {
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.lineBreakMode = .byWordWrapping
-            cell.textLabel?.text = "No hay resultados para mostrar, por favor, intente nuevamente"
+            cell.textLabel?.text = "No hay resultados para mostrar, por favor intente nuevamente.\n Swipe para cambiar de categoria"
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
             cell.isUserInteractionEnabled = false
             
+            var fontColor: UIColor = .black
+            switch displayCategory {
+            case .music:
+                fontColor = Utils.UIColorFromRGB(rgbValue: kMusicFontColor)
+            case .movie:
+                fontColor = Utils.UIColorFromRGB(rgbValue: kMoviesFontColor)
+            case .tvShow:
+                fontColor = Utils.UIColorFromRGB(rgbValue: kTvShowFontColor)
+            default:
+                fontColor = .black
+            }
+            cell.textLabel?.textColor = fontColor
             return cell
         }
         return UITableViewCell()
@@ -278,29 +290,41 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
     
     private func updateLayoutForTvShows() {
         sectionsControl.selectedSegmentIndex = Media.tvShow.rawValue
-        navigationController?.navigationBar.barTintColor = Utils.UIColorFromRGB(rgbValue: kTvShowNavigationBarColor)
-        //[self.tableView setBackgroundView:view];
-        UIApplication.shared.statusBarStyle = .default
-        self.view.backgroundColor = Utils.UIColorFromRGB(rgbValue: kTvShowBackgroundColor)
-        searchController.searchBar.scopeBarBackgroundImage = UIImage.imageWithColor(color: Utils.UIColorFromRGB(rgbValue: kTvShowNavigationBarColor))
-        self.view.setNeedsLayout()
+        self.updateUI(segmentColor: Utils.UIColorFromRGB(rgbValue: kTvShowFontColor),
+                      navBarTintColor: Utils.UIColorFromRGB(rgbValue: kTvShowNavigationBarColor),
+                      statusBarStyle: .default,
+                      viewBackgroundColor: Utils.UIColorFromRGB(rgbValue: kTvShowBackgroundColor),
+                      andSearchBarColor: Utils.UIColorFromRGB(rgbValue: kTvShowFontColor))
     }
     
     private func updateLayoutForMusic() {
         sectionsControl.selectedSegmentIndex = Media.music.rawValue
-        navigationController?.navigationBar.barTintColor = Utils.UIColorFromRGB(rgbValue: kMusicNavigationBarColor)
-        UIApplication.shared.statusBarStyle = .lightContent
-        self.view.backgroundColor = Utils.UIColorFromRGB(rgbValue: kMusicBackgroundColor)
-        searchController.searchBar.scopeBarBackgroundImage = UIImage.imageWithColor(color: Utils.UIColorFromRGB(rgbValue: kMusicNavigationBarColor))
-        self.view.setNeedsLayout()
+        self.updateUI(segmentColor: Utils.UIColorFromRGB(rgbValue: kMusicFontColor),
+                      navBarTintColor: Utils.UIColorFromRGB(rgbValue: kMusicNavigationBarColor),
+                      statusBarStyle: .lightContent,
+                      viewBackgroundColor: Utils.UIColorFromRGB(rgbValue: kMusicBackgroundColor),
+                      andSearchBarColor: Utils.UIColorFromRGB(rgbValue: kMusicFontColor))
     }
     
     private func updateLayoutForMovies() {
         sectionsControl.selectedSegmentIndex = Media.movie.rawValue
-        navigationController?.navigationBar.barTintColor = Utils.UIColorFromRGB(rgbValue: kMoviesNavigationBarColor)
-        UIApplication.shared.statusBarStyle = .default
-        self.view.backgroundColor = Utils.UIColorFromRGB(rgbValue: kMoviesBackgroundColor)
-        searchController.searchBar.scopeBarBackgroundImage = UIImage.imageWithColor(color: Utils.UIColorFromRGB(rgbValue: kMoviesNavigationBarColor))
+        self.updateUI(segmentColor: Utils.UIColorFromRGB(rgbValue: kMoviesFontColor),
+                      navBarTintColor: Utils.UIColorFromRGB(rgbValue: kMoviesNavigationBarColor),
+                      statusBarStyle: .default,
+                      viewBackgroundColor: Utils.UIColorFromRGB(rgbValue: kMoviesBackgroundColor),
+                      andSearchBarColor: Utils.UIColorFromRGB(rgbValue: kMoviesFontColor))
+    }
+    
+    private func updateUI(segmentColor: UIColor, navBarTintColor: UIColor, statusBarStyle: UIStatusBarStyle, viewBackgroundColor: UIColor, andSearchBarColor searchBarColor: UIColor) {
+        sectionsControl.tintColor = segmentColor
+        navigationController?.navigationBar.barTintColor = navBarTintColor
+        UIApplication.shared.statusBarStyle = statusBarStyle
+        self.view.backgroundColor = viewBackgroundColor
+        searchController.searchBar.scopeBarBackgroundImage = UIImage.imageWithColor(color: navBarTintColor)
+        let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.textColor = searchBarColor
+        UIBarButtonItem.appearance(whenContainedInInstancesOf:[UISearchBar.self]).tintColor = searchBarColor
+        tableView.separatorColor = segmentColor
         self.view.setNeedsLayout()
     }
 }

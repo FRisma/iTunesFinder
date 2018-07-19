@@ -35,7 +35,7 @@ class IFMainMusicViewCell: UITableViewCell {
         trackName = UILabel.init(frame: CGRect.zero)
         trackName.numberOfLines = 1
         trackName.font = UIFont.systemFont(ofSize: 17)
-        trackName.textColor = .white
+        trackName.textColor = Utils.UIColorFromRGB(rgbValue: kMusicFontColor)
         
         artist = UILabel.init(frame: CGRect.zero)
         artist.numberOfLines = 1
