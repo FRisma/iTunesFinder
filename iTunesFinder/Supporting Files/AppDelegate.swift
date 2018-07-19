@@ -17,7 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        #if DEBUG
+        NetworkActivityLogger.shared.level = .info
+        #else
         NetworkActivityLogger.shared.level = .off
+        #endif
         NetworkActivityLogger.shared.startLogging()
         
         self.window = UIWindow()

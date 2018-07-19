@@ -25,7 +25,8 @@ class IFLoadingIndicatorView: UIView {
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(blurEffectView)
         
-        loadingIndicator.center = self.center
+        let middlePoint = CGPoint(x: UIScreen.main.bounds.size.width*0.5,y: UIScreen.main.bounds.size.height*0.5)
+        loadingIndicator.center = middlePoint
         loadingIndicator.hidesWhenStopped = true;
         
         self.addSubview(loadingIndicator)

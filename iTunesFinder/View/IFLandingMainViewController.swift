@@ -94,7 +94,7 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.alpha = 0.0
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.5) {
             cell.alpha = 1.0
         }
     }
@@ -240,7 +240,7 @@ class IFLandingMainViewController: UIViewController, UITableViewDelegate, UITabl
         let aMovie = elements![indexPath.row]
         cell.backgroundColor = .clear
         cell.loadImage(fromURL: aMovie.artWorkURL!)
-        cell.title.text     = aMovie.artistName
+        cell.title.text     = aMovie.trackName
         cell.brief.text     = aMovie.longDesc
         cell.selectionStyle = .none
         
