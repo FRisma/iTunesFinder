@@ -36,13 +36,13 @@ class IFMainMovieViewCell: UITableViewCell {
         title.numberOfLines = 2
         title.lineBreakMode = .byWordWrapping
         title.font = UIFont.systemFont(ofSize: 15)
-        title.textColor = Utils.UIColorFromRGB(rgbValue: kMoviesFontColor)
+        title.textColor = UIColor.init(fromRGBValue: kMoviesFontColor)
         
         brief = UILabel.init(frame: CGRect.zero)
         brief.numberOfLines = 4
         brief.lineBreakMode = .byWordWrapping
         brief.font = UIFont.systemFont(ofSize: 12)
-        brief.textColor = Utils.UIColorFromRGB(rgbValue: kMoviesFontColor)
+        brief.textColor = UIColor.init(fromRGBValue: kMoviesFontColor)
         
         thumbnail.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         thumbnail.contentMode = .scaleAspectFit

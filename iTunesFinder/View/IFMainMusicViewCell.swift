@@ -35,12 +35,12 @@ class IFMainMusicViewCell: UITableViewCell {
         trackName = UILabel.init(frame: CGRect.zero)
         trackName.numberOfLines = 1
         trackName.font = UIFont.systemFont(ofSize: 17)
-        trackName.textColor = Utils.UIColorFromRGB(rgbValue: kMusicFontColor)
+        trackName.textColor = UIColor.init(fromRGBValue:kMusicFontColor)
         
         artist = UILabel.init(frame: CGRect.zero)
         artist.numberOfLines = 1
         artist.font = UIFont.systemFont(ofSize: 14)
-        artist.textColor = Utils.UIColorFromRGB(rgbValue: 0xe0dee0)
+        artist.textColor = UIColor.init(fromRGBValue:0xe0dee0)
         
         thumbnail.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         thumbnail.contentMode = .scaleToFill

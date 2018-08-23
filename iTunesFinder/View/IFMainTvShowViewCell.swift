@@ -40,19 +40,19 @@ class IFMainTvShowViewCell: UITableViewCell {
         title.numberOfLines = 2
         title.lineBreakMode = .byWordWrapping
         title.font = UIFont.systemFont(ofSize: 16)
-        title.textColor = Utils.UIColorFromRGB(rgbValue: kTvShowFontColor)
+        title.textColor = UIColor.init(fromRGBValue: kTvShowFontColor)
         
         episode = UILabel.init(frame: CGRect.zero)
         episode.numberOfLines = 3
         episode.lineBreakMode = .byWordWrapping
         episode.font = UIFont.systemFont(ofSize: 14)
-        episode.textColor = Utils.UIColorFromRGB(rgbValue: kTvShowFontColor)
+        episode.textColor = UIColor.init(fromRGBValue: kTvShowFontColor)
         
         brief = UILabel.init(frame: CGRect.zero)
         brief.numberOfLines = 0
         brief.lineBreakMode = .byWordWrapping
         brief.font = UIFont.systemFont(ofSize: 9)
-        brief.textColor = Utils.UIColorFromRGB(rgbValue: kTvShowFontColor)
+        brief.textColor = UIColor.init(fromRGBValue: kTvShowFontColor)
         
         thumbnail.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         thumbnail.contentMode = .scaleToFill

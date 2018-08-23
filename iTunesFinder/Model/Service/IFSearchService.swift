@@ -13,12 +13,6 @@ class IFSearchService: NSObject {
     let provider = IFSearchItunesProvider.singleton
     
     public func getData(_ request: IFSearchRequest, onSuccess: @escaping ([IFElementModel]) -> Void, onFailure: @escaping (Error) -> Void) {
-        
-        self.provider.fetchInfo(request, onSuccess:{ (response) in
-            onSuccess(response)
-        }) { (error) in
-            print("Algo anduvo mal")
-            onFailure(error)
-        }
+        self.provider.fetchInfo(request) { ($1 == nil) ? onSuccess($0!) : onFailure($1!) }
     }
 }

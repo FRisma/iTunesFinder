@@ -13,10 +13,7 @@ class IFSearchItunesProvider {
     
     static let singleton = IFSearchItunesProvider()
     
-    private init() {
-    }
-    
-    func fetchInfo(_ request: IFSearchRequest, onSuccess:@escaping ([IFElementModel]) -> Void, onFailure:@escaping (Error) -> Void ) {
+    func fetchInfo(_ request: IFSearchRequest, onCompletion:@escaping ([IFElementModel]?, Error?) -> Void) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         Alamofire.request(API_URL,
                           method: .get,
@@ -29,17 +26,16 @@ class IFSearchItunesProvider {
                     if let dataResponse = IFSearchResponse(JSONString: "\(responseString)") {
                         if let objects = dataResponse.result {
                             if objects.isEmpty {
-                                onSuccess([])
+                                onCompletion([],nil)
                             } else {
-                                onSuccess(dataResponse.result!)
+                                onCompletion(dataResponse.result!,nil)
                             }
                         } else {
-                            onSuccess([])
+                            onCompletion([], nil)
                         }
                     }
                 case .failure(let error):
-                    print(error)
-                    onFailure(error)
+                    onCompletion(nil,error)
                 }
         }
     }
